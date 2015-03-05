@@ -25,8 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'responders'
 gem 'carrierwave'
+gem 'devise'
 
-# Front-end
 gem 'haml'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'

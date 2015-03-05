@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe MembersController, type: :controller do
+  let(:member) { create(:member) }
+  sign_in_user
 
   describe "GET #new" do
     it 'assigns @member' do
@@ -25,7 +27,6 @@ RSpec.describe MembersController, type: :controller do
   end
 
   describe 'GET #edit' do
-    let!(:member) { create(:member) }
     before { get :edit, id: member}
 
     it 'assigns right member to @member' do
@@ -35,15 +36,74 @@ RSpec.describe MembersController, type: :controller do
     it 'render edit view' do
       expect(response).to render_template(:edit)
     end
+
+    it 'redirect to sign_in path' do
+      sign_out @user
+      get :edit, id: member
+      expect(response).to redirect_to(new_user_session_path)
+    end
   end
   
   describe 'PATCH #update' do
     it 'update member with valid attributes' do
-
+      patch :update, id: member, member: attributes_for(:member, first_name: 'NewName')
+      member.reload
+      expect(member.first_name).to eq('NewName')
     end
-    it 'does not update with invalid attributes'
-    it 'redirect to show view'
-  end
-  describe 'GET #index'
 
+    it 'assigns requested member to @member' do
+      patch :update, id: member, member: attributes_for(:member, first_name: 'NewName')
+      expect(assigns(:member)).to eq(member)
+    end
+
+    it 'does not update with invalid attributes' do
+      patch :update, id: member, member: attributes_for(:member, first_name: '')
+      member.reload
+      expect(member.first_name).to eq('MyString')
+    end
+
+    it 'redirect to show view' do
+      patch :update, id: member, member: attributes_for(:member, first_name: 'NewName')
+      expect(response).to redirect_to(member_path(member))
+    end
+
+    it 'redirect to sign_in path' do
+      sign_out @user
+      patch :update, id: member, member: attributes_for(:member, first_name: 'NewName')
+      expect(response).to redirect_to(new_user_session_path)
+    end
+  end
+
+  describe 'GET #index' do
+    # :woman_member is without partner
+    let(:members) { create_list(:woman_member, 2) }
+    before { get :index }
+
+    it 'assigns members to @members' do
+      expect(assigns(:members)).to match_array(members)
+    end
+
+    it 'render index view' do
+      expect(response).to render_template(:index)
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    before { member }
+
+    it 'assigns to @member' do
+      delete :destroy, id: member
+      expect(assigns(:member)).to eq(member)
+    end
+
+    it 'redirect to sign in' do
+      sign_out @user
+      delete :destroy, id: member
+      expect(response).to redirect_to(new_user_session_path)
+    end
+
+    it 'destroy member' do
+      expect { delete :destroy, id: member }.to change(Member, :count).by(-1)
+    end
+  end
 end

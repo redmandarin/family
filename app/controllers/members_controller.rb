@@ -1,6 +1,11 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: [:edit]
+  before_action :set_member, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :create, :update, :destroy]
   respond_to :html
+
+  def index
+    @members = Member.all
+  end
 
   def new
     @member = Member.new
@@ -15,6 +20,15 @@ class MembersController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    @member.update(member_params)
+    respond_with(@member)
+  end
+
+  def destroy
+    respond_with(@member.destroy)
   end
 
 private
