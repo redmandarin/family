@@ -1,0 +1,8 @@
+ru:
+  helpers:
+    member:
+      first_name: "Имя"
+      middle_name: "Отчество"
+      last_name: "Фамилия"
+      birth_date: "Дата рождения"
+      death_date: "Дата смерти"

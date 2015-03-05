@@ -36,9 +36,17 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.7)
     arel (6.0.0)
+    autoprefixer-rails (5.1.7)
+      execjs
+      json
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.3.3)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.2.19)
+    bootstrap_form (2.3.0)
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -53,6 +61,11 @@ GEM
     capybara-webkit (1.4.1)
       capybara (>= 2.3.0, < 2.5.0)
       json
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -74,6 +87,8 @@ GEM
       railties (>= 3.0.0)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    haml (4.0.6)
+      tilt
     hike (1.2.3)
     i18n (0.7.0)
     jbuilder (2.2.8)
@@ -84,6 +99,8 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.2)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -124,6 +141,8 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
+    responders (2.1.0)
+      railties (>= 4.2.0, < 5)
     rspec-core (3.2.1)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.0)
@@ -186,16 +205,22 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass
+  bootstrap_form
   byebug
   capybara
   capybara-webkit
+  carrierwave
   coffee-rails (~> 4.1.0)
   database_cleaner
-  factory_girl_rails
+  factory_girl_rails (~> 4.0)
+  haml
   jbuilder (~> 2.0)
   jquery-rails
+  launchy
   pg
   rails (= 4.2.0)
+  responders
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

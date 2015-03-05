@@ -1,0 +1,10 @@
+= bootstrap_form_for @member do |f|
+  = f.select :sex, [[t("male"), "male"], [t("female"), "female"]]
+  = f.text_field :first_name
+  = f.text_field :last_name
+  = f.text_field :middle_name
+  = f.date_select :birth_date, use_two_digit_numbers: true, use_month_numbers: true, start_year: 1700
+  = f.date_select :death_date, use_two_digit_numbers: true, use_month_numbers: true, start_year: 1700, include_blank: true
+  = f.file_field :image
+  = f.select :partner_id, Member.all.collect { |p| ["#{p.first_name} #{p.last_name}", p.id] }, include_blank: true
+  = f.submit
