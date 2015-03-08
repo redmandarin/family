@@ -11,8 +11,16 @@ class Member < ActiveRecord::Base
 
   validates :first_name, :last_name, :birth_date, :sex, presence: true
 
+  before_save :titleize
+
   def full_name
     full_name = self.first_name + " " + self.middle_name + " " + self.last_name
     full_name.mb_chars.split(" ").map(&:capitalize).join(" ")
+  end
+
+  def titleize
+    [:first_name, :middle_name, :last_name].each do |name|
+      self.send(name).mb_chars[0].upcase
+    end
   end
 end

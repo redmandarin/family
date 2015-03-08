@@ -1,13 +1,14 @@
 .row
   .col-md-4
     = image_tag @member.image.url, class: "member-image"
+    = link_to t("helpers.link.edit_connections"), member_connections_path(@member) if can?(:create, Connection)
   .col-md-8
     %ul.list-unstyled
       %li= link_to @member.full_name, @member
-      %li= @member.birth_date.strftime("#{t('helpers.label.member.birth_date')}: %d.%m.%Y")
+      %li= @member.birth_date.strftime("#{t('simple_form.labels.member.birth_date')}: %d.%m.%Y")
       - if @member.death_date
-        %li= @member.death_date.strftime("#{t('helpers.label.member.birth_date')}: %d.%m.%Y")
+        %li= @member.death_date.strftime("#{t('simple_form.labels.member.birth_date')}: %d.%m.%Y")
       - if @member.partner
         %li
-        = "#{t('helpers.label.member.partner_id')}:"
+        = "#{t('simple_form.labels.member.partner_id')}:"
         = link_to @member.partner.full_name, @member.partner

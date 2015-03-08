@@ -26,10 +26,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'responders'
 gem 'carrierwave'
 gem 'devise'
+gem 'cancancan'
 
 gem 'haml'
 gem 'bootstrap-sass'
-gem 'bootstrap_form'
+gem 'simple_form'
 
 group :test do
   gem 'shoulda-matchers'

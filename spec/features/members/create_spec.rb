@@ -1,10 +1,12 @@
 require_relative "../feature_helper"
 
-describe "Create member", type: :feature do
+feature "Create member", type: :feature do
 
   before { create(:member, first_name: 'Юлия', last_name: 'Гуськова')}
+  given(:user) { create(:user) }
+  background { sign_in(user) }
 
-  it 'create member' do
+  scenario 'create member' do
     visit(new_member_path)
 
     fill_in("Имя", with: 'Иван')

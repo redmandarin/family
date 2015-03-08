@@ -12,9 +12,25 @@ RSpec.describe Member, type: :model do
   it { should validate_presence_of :birth_date }
   it { should validate_presence_of :sex }
 
-  describe 'user full name' do
-    let(:member) { create(:member, first_name: 'Петр', last_name: "Гуськов", middle_name: "аркадьевич") }
+  let(:member) { create(:member, first_name: 'Петр', last_name: "Гуськов", middle_name: "аркадьевич") }
 
+  describe 'titleize name after create' do
+    subject { build(:member, last_name: "гуськов", first_name: "петька", middle_name: "аркадьевич")}
+
+    it 'call before save' do
+      expect(subject).to receive(:titleize)
+      subject.save!
+    end
+
+    it 'uppercase first letters' do
+      subject.save!
+      expect(subject.last_name).to eq("Гуськов")
+      expect(subject.first_name).to eq("Петька")
+      expect(subject.middle_name).to eq("Аркадьевич")
+    end
+  end
+
+  describe 'user full name' do
     it 'should give full name' do
       expect(member.full_name).to eq("Петр Аркадьевич Гуськов")
     end

@@ -3,6 +3,8 @@ class MembersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :create, :update, :destroy]
   respond_to :html
 
+  authorize_resource
+
   def index
     @members = Member.all
   end

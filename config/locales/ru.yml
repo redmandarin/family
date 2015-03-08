@@ -1,17 +1,6 @@
 ru:
-  project_name: "Семья"
-  male: "мужчина"
-  female: "женщина"
-  date:
-    order:
-      - :day
-      - :month
-      - :year
-  helpers:
-    submit:
-      create: "Сохранить человека"
-      update: "Сохранить изменения"
-    label:
+  simple_form:
+    labels:
       member:
         image: "Изображение"
         first_name: "Имя"
@@ -21,3 +10,19 @@ ru:
         death_date: "Дата смерти"
         partner_id: "Супруг/супруга"
         sex: "Пол"
+        choose_sex: "Выберите пол"
+  project_name: "Семья"
+  male: "мужчина"
+  female: "женщина"
+  date:
+    order:
+      - :day
+      - :month
+      - :year
+  helpers:
+    link:
+      edit_connections: "Редактировать связи"
+    submit:
+      member:
+        create: "Сохранить человека"
+        update: "Сохранить изменения"
