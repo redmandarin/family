@@ -46,9 +46,9 @@ RSpec.describe MembersController, type: :controller do
   
   describe 'PATCH #update' do
     it 'update member with valid attributes' do
-      patch :update, id: member, member: attributes_for(:member, first_name: 'NewName')
+      patch :update, id: member, member: attributes_for(:member, first_name: 'Newname')
       member.reload
-      expect(member.first_name).to eq('NewName')
+      expect(member.first_name).to eq('Newname')
     end
 
     it 'assigns requested member to @member' do
@@ -59,7 +59,7 @@ RSpec.describe MembersController, type: :controller do
     it 'does not update with invalid attributes' do
       patch :update, id: member, member: attributes_for(:member, first_name: '')
       member.reload
-      expect(member.first_name).to eq('MyString')
+      expect(member.first_name).to eq('Mystring')
     end
 
     it 'redirect to show view' do

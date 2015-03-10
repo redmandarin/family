@@ -20,7 +20,9 @@ class Member < ActiveRecord::Base
 
   def titleize
     [:first_name, :middle_name, :last_name].each do |name|
-      self.send(name).mb_chars[0].upcase
+      # self.send(name).mb_chars[0].upcase
+      new_name = self.send(name).mb_chars.capitalize
+      self.send("#{name}=", new_name)
     end
   end
 end

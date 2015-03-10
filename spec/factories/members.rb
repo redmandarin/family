@@ -1,17 +1,17 @@
 FactoryGirl.define do
   factory :woman_member, class: Member do
-    first_name "MyString"
-    last_name "MyString"
-    middle_name "MyString"
+    first_name "Mystring"
+    last_name "Mystring"
+    middle_name "Mystring"
     birth_date "2015-02-26"
     death_date "2015-02-26"
     sex "male"
   end
 
   factory :member do
-    first_name "MyString"
-    last_name "MyString"
-    middle_name "MyString"
+    first_name "Mystring"
+    last_name "Mystring"
+    middle_name "Mystring"
     birth_date "2015-02-26"
     death_date "2015-02-26"
     sex "female"
