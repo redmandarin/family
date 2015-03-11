@@ -1,16 +1,15 @@
 class MembersController < ApplicationController
   before_action :set_member, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :create, :update, :destroy]
-  respond_to :html
+  before_action :authenticate_user!, except: [:index, :show]
 
   authorize_resource
 
   def index
-    @members = Member.all
+    respond_with(@members = Member.all)
   end
 
   def new
-    @member = Member.new
+    respond_with(@member = Member.new)
   end
   
   def create

@@ -1,6 +1,12 @@
 ru:
   simple_form:
     labels:
+      connection:
+        child: "Ребенок"
+        parent: "Родитель"
+        choose: "Выберите человека"
+        who: "Кто?"
+        type: "Тип связи"
       member:
         image: "Изображение"
         first_name: "Имя"
@@ -20,9 +26,14 @@ ru:
       - :month
       - :year
   helpers:
+    header:
+      new_connection: "Новая связь"
     link:
       edit_connections: "Редактировать связи"
+      new_connection: "Добавить новую связь"
     submit:
+      connection:
+        create: "Сохранить связь"
       member:
         create: "Сохранить человека"
         update: "Сохранить изменения"

@@ -9,6 +9,12 @@ RSpec.describe MembersController, type: :controller do
       get :new
       expect(assigns(:member)).to be_a_kind_of(Member)
     end
+
+    it 'redirects to sign_in path' do
+      sign_out @user
+      get :new
+      expect(response).to redirect_to(new_user_session_path)
+    end
   end
 
   describe 'POST #create' do

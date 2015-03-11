@@ -1,4 +1,6 @@
 class Connection < ActiveRecord::Base
+  attr_accessor :type
+  
   belongs_to :parent, class_name: 'Member'
   belongs_to :child, class_name: 'Member'
 

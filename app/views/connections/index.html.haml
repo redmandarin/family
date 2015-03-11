@@ -1,0 +1,4 @@
+= link_to t("helpers.link.new_connection"), new_member_connection_path
+%ul
+  - @connections.each do |connection|
+    %li= link_to connection.member_full_name, conneciton.member

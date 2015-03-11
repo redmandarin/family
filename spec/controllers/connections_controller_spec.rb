@@ -5,6 +5,14 @@ RSpec.describe ConnectionsController, type: :controller do
   let(:another_member) { create(:member) }
   let(:connection) { create(:connection, parent: member) }
 
+  describe "GET #new" do
+    sign_in_user
+    before { get :new, member_id: member }
+
+    it { expect(assigns(:connection)).to be_a(Connection) }
+    it { expect(response).to render_template(:new) }
+  end
+
   describe "GET #index" do
     let(:another_connection) { create(:connection, child: member) }
 
@@ -16,11 +24,17 @@ RSpec.describe ConnectionsController, type: :controller do
     end
   end
 
-  describe "POST #create", js: true do
+  describe "POST #create" do
     sign_in_user
 
     it 'create new connection with child' do
       expect { post :create, member_id: member, connection: { child_id: another_member } }.to change(member.connections, :count).by(1)
+    end
+
+    it 'redirect to index view' do
+      post :create, member_id: member, connection: { child_id: another_member }
+      # puts response.to_a
+      expect(response).to redirect_to(member_connections_path(member))
     end
 
     it 'create new connection with parent' do
@@ -35,16 +49,22 @@ RSpec.describe ConnectionsController, type: :controller do
 
   describe "DELETE #destroy" do
     sign_in_user
+    let!(:connection) { create(:connection, parent: member) }
+
+    it 'redirect to member connections path' do
+      member
+      delete :destroy, id: connection, member_id: member
+      expect(assigns(:connection)).to eq connection
+    end
 
     it 'assigns connection to @connection' do
-      connection
-      delete :destroy, id: connection
+      delete :destroy, id: connection, member_id: member
       expect(assigns(:connection)).to eq connection
     end
 
     it 'destroy connection' do
       connection
-      expect { delete :destroy, id: connection }.to change(member.connections, :count).by(-1)
+      expect { delete :destroy, id: connection, member_id: member }.to change(member.connections, :count).by(-1)
     end
   end
 end
