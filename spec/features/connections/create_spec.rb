@@ -20,7 +20,9 @@ feature 'Connection' do
       select "Ребенок", from: "Тип связи"
       click_on "Сохранить связь"
 
-      expect(page).to have_content("Петр Аркадьевич Гуськов")
+      within ".children" do
+        expect(page).to have_content("Петр Аркадьевич Гуськов")
+      end
     end
 
     scenario 'create parent Connection' do
@@ -28,7 +30,9 @@ feature 'Connection' do
       select "Родитель", from: "Тип связи"
       click_on "Сохранить связь"
 
-      expect(page).to have_content("Аркадий Германович Гуськов")
+      within ".parents" do
+        expect(page).to have_content("Аркадий Германович Гуськов")
+      end
     end
   end
 end

@@ -2,13 +2,15 @@
 %div.row
   %div.col-md-6
     %h4= t("helpers.header.parents")
-    %ul
+    %ul.parents
       - @parents.each do |parent|
         %li
-        = link_to parent.full_name, parent
-        = link_to t("helpers.link.destroy_connection"), member_connection_path(@member, Connection.where(parent_id: parent.id, child_id: @member.id).first), confirm: t("helpers.are_you_sure"), method: "delete"
+          = link_to parent.full_name, parent
+          = link_to t("helpers.link.destroy_connection"), member_connection_path(@member, Connection.where(parent_id: parent.id, child_id: @member.id).first), confirm: t("helpers.are_you_sure"), method: "delete"
   %div.col-md-6
     %h4= t("helpers.header.children")
-    %ul
+    %ul.children
       - @children.each do |child|
-        %li= link_to child.full_name, child
+        %li
+          = link_to child.full_name, child
+          = link_to t("helpers.link.destroy_connection"), member_connection_path(@member, Connection.where(parent_id: @member.id, child_id: child.id).first), confirm: t("helpers.are_you_sure"), method: "delete"
