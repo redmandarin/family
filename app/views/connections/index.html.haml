@@ -1,4 +1,14 @@
 = link_to t("helpers.link.new_connection"), new_member_connection_path
-%ul
-  - @connections.each do |connection|
-    %li= link_to connection.member_full_name, conneciton.member
+%div.row
+  %div.col-md-6
+    %h4= t("helpers.header.parents")
+    %ul
+      - @parents.each do |parent|
+        %li
+        = link_to parent.full_name, parent
+        = link_to t("helpers.link.destroy_connection"), member_connection_path(@member, Connection.where(parent_id: parent.id, child_id: @member.id).first), confirm: t("helpers.are_you_sure"), method: "delete"
+  %div.col-md-6
+    %h4= t("helpers.header.children")
+    %ul
+      - @children.each do |child|
+        %li= link_to child.full_name, child

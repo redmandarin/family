@@ -26,11 +26,15 @@ ru:
       - :month
       - :year
   helpers:
+    are_you_sure: "Вы уверенны?"
     header:
+      parents: "Родители"
+      children: "Дети"
       new_connection: "Новая связь"
     link:
       edit_connections: "Редактировать связи"
       new_connection: "Добавить новую связь"
+      destroy_connection: "Удалить связь"
     submit:
       connection:
         create: "Сохранить связь"

@@ -15,12 +15,21 @@ RSpec.describe ConnectionsController, type: :controller do
 
   describe "GET #index" do
     let(:another_connection) { create(:connection, child: member) }
+    let(:children_list) { create_list(:connection, 2, parent: member) }
+    let(:parents_list) { create_list(:connection, 2, child: member) }
 
-    it "assigns all user connections" do
-      another_connection
-      connection
+    it 'assigns parents to @parents' do
+      ar = []
+      parents_list.each { |p| ar << p.parent }
       get :index, member_id: member
-      expect(assigns(:connections)).to match_array([connection, another_connection])
+      expect(assigns(:parents)).to match_array(ar)
+    end
+
+    it 'assigns children to @children' do
+      ar = []
+      children_list.each { |p| ar << p.child }
+      get :index, member_id: member
+      expect(assigns(:children)).to match_array(ar)
     end
   end
 

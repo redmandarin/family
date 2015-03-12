@@ -7,7 +7,9 @@ class ConnectionsController < ApplicationController
   respond_to :html
 
   def index
-    respond_with(@connections = Connection.all_connections(@member))
+    @parents = @member.parents
+    @children = @member.children
+    respond_with(@parents, @children) 
   end
 
   def new
