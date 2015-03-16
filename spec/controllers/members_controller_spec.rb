@@ -22,13 +22,20 @@ RSpec.describe MembersController, type: :controller do
       expect { post :create, member: attributes_for(:member) }.to change(Member, :count).by(1)
     end
 
-    it 'not creates member with invalid attributes' do
-      expect { post :create, member: { first_name: 'some', second_name: '' } }.not_to change(Member, :count)
-    end
-
     it 'redirect to show view' do
       post :create, member: attributes_for(:member)
       expect(response).to redirect_to(member_path(assigns(:member)))
+    end
+
+    context 'invalid attributes' do
+      it 'does not creates member' do
+        expect { post :create, member: { first_name: 'some', second_name: '' } }.not_to change(Member, :count)
+      end
+
+      it 'render new path' do
+        post :create, member: { first_name: 'some', second_name: '' }
+        expect(response).to render_template(:new)
+      end
     end
   end
 
