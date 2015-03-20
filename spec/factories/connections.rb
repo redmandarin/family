@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :connection do
-    association :parent, factory: :member
-    association :child, factory: :member
+    association :procreator, factory: :member
+    association :baby, factory: :member
   end
 
 end

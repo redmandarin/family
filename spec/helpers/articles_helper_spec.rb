@@ -11,5 +11,8 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ArticlesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'render markdown' do
+    text = "### Some title"
+    expect(markdown(text)).to eq("<h3>Some title</h3>\n")
+  end
 end

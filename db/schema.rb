@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316080813) do
+ActiveRecord::Schema.define(version: 20150320141615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,10 +30,8 @@ ActiveRecord::Schema.define(version: 20150316080813) do
   end
 
   create_table "connections", force: :cascade do |t|
-    t.integer  "parent_id"
-    t.integer  "child_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "procreator_id"
+    t.integer "baby_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -47,7 +45,11 @@ ActiveRecord::Schema.define(version: 20150316080813) do
     t.datetime "updated_at",  null: false
     t.integer  "partner_id"
     t.string   "image"
+    t.integer  "parent_id"
+    t.string   "ancestry"
   end
+
+  add_index "members", ["ancestry"], name: "index_members_on_ancestry", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

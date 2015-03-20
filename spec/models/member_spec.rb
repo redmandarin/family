@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Member, type: :model do
   it { should have_many :connections }
   it { should have_many :reverse_connections }
-  it { should have_many :children }
-  it { should have_many :parents }
+  it { should have_many :babies }
+  it { should have_many :procreators }
   it { should belong_to :partner }
   it { should have_and_belong_to_many :articles }
 
@@ -13,7 +13,7 @@ RSpec.describe Member, type: :model do
   it { should validate_presence_of :birth_date }
   it { should validate_presence_of :sex }
 
-  let(:member) { create(:member, first_name: 'Петр', last_name: "Гуськов", middle_name: "аркадьевич") }
+  let!(:member) { create(:member, first_name: 'Петр', last_name: "Гуськов", middle_name: "аркадьевич") }
 
   describe 'titleize name after create' do
     subject { build(:member, last_name: "гуськов", first_name: "петька", middle_name: "аркадьевич")}

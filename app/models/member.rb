@@ -3,12 +3,14 @@ class Member < ActiveRecord::Base
 
   enum sex: [:male, :female]
 
-  has_many :connections, foreign_key: 'parent_id', dependent: :destroy
-  has_many :children, through: :connections
-  has_many :reverse_connections, class_name: 'Connection', foreign_key: 'child_id', dependent: :destroy
-  has_many :parents, through: :reverse_connections
   belongs_to :partner, class_name: "Member"
-  has_and_belongs_to_many :articles
+
+  has_many :connections, foreign_key: 'procreator_id', dependent: :destroy
+  has_many :babies, through: :connections
+  has_many :reverse_connections, class_name: 'Connection', foreign_key: 'baby_id', dependent: :destroy
+  has_many :procreators, through: :reverse_connections
+
+  has_and_belongs_to_many :articles # ! Переделать
 
   validates :first_name, :last_name, :birth_date, :sex, presence: true
 

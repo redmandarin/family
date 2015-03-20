@@ -38,9 +38,17 @@ RSpec.describe ArticlesController, type: :controller do
   end
 
   describe 'POST #create' do
+    let(:member) { create(:member) }
+    let(:another_member) { create(:member) }
+    
     context 'valid attributes' do
       it 'creates new article' do
         expect { post :create, article: attributes_for(:article) }.to change(@user.articles, :count).by(1)
+      end
+
+      it 'creates with assotiated members' do
+        post :create, article: { title: "title", body: "body", member_ids: [member.id, another_member.id] }
+        expect(assigns(:article).member_ids).to match_array([member.id, another_member.id])
       end
 
       it 'redirects to article_path' do

@@ -27,8 +27,10 @@ gem 'responders'
 gem 'carrierwave'
 gem 'devise'
 gem 'cancancan'
+gem 'ancestry'
 
 gem 'haml'
+gem 'redcarpet'
 gem 'bootstrap-sass'
 gem 'simple_form'
 

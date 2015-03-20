@@ -5,7 +5,7 @@ FactoryGirl.define do
     middle_name "Mystring"
     birth_date "2015-02-26"
     death_date "2015-02-26"
-    sex "male"
+    sex "female"
   end
 
   factory :member do
@@ -14,7 +14,7 @@ FactoryGirl.define do
     middle_name "Mystring"
     birth_date "2015-02-26"
     death_date "2015-02-26"
-    sex "female"
+    sex "male"
     association :partner, factory: :woman_member
   end
 

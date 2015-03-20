@@ -1,6 +1,10 @@
 ru:
   simple_form:
     labels:
+      article:
+        title: "Заголовок"
+        body: "Тело статьи"
+        members: "Упомининающиеся в статье"
       connection:
         child: "Ребенок"
         parent: "Родитель"
@@ -28,14 +32,22 @@ ru:
   helpers:
     are_you_sure: "Вы уверенны?"
     header:
+      member_articles: "Связанные статьи"
       parents: "Родители"
       children: "Дети"
       new_connection: "Новая связь"
     link:
-      edit_connections: "Редактировать связи"
-      new_connection: "Добавить новую связь"
-      destroy_connection: "Удалить связь"
+      connection:
+        edit: "Редактировать связи"
+        new: "Добавить новую связь"
+        destroy: "Удалить связь"
+      article:
+        destroy: "Удалить статью"
+        edit: "Редактировать статью"
     submit:
+      article:
+        create: "Сохранить статью"
+        update: "Сохранить изменения"
       connection:
         create: "Сохранить связь"
       member:

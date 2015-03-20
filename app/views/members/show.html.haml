@@ -1,7 +1,7 @@
 .row
   .col-md-4
     = image_tag @member.image.url, class: "member-image"
-    = link_to t("helpers.link.edit_connections"), member_connections_path(@member) if can?(:create, Connection)
+    = link_to t("helpers.link.connection.edit"), member_connections_path(@member) if can?(:create, Connection)
   .col-md-8
     %ul.list-unstyled
       %li= link_to @member.full_name, @member
@@ -12,3 +12,10 @@
         %li
         = "#{t('simple_form.labels.member.partner_id')}:"
         = link_to @member.partner.full_name, @member.partner
+
+.row
+  .col-md-12
+    %h4 t("helpers.header.member_articles")
+    %ul
+      - @member.articles.each do |article|
+        %li= link_to article.title, article
