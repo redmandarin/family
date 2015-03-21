@@ -1,5 +1,5 @@
 %h4= "#{t('helpers.header.new_connection')} #{@member.full_name}"
 = simple_form_for [@member, @connection] do |f|
-  = f.input :child_id, collection: Member.all.collect { |m| [m.full_name, m.id] }, prompt: t("simple_form.labels.connection.choose"), label: t("simple_form.labels.connection.who")
-  = f.input :type, collection: [[t("simple_form.labels.connection.child"), 'child'], [t("simple_form.labels.connection.parent"), 'parent']], input_html: { class: "connection-type" }, label: t("simple_form.labels.connection.type")
+  = f.input :baby_id, collection: Member.all.collect { |m| [m.full_name, m.id] }, prompt: t("simple_form.labels.connection.choose"), label: t("simple_form.labels.connection.who")
+  = f.input :type, collection: [[t("simple_form.labels.connection.baby"), 'baby'], [t("simple_form.labels.connection.procreator"), 'procreator']], input_html: { class: "connection-type" }, label: t("simple_form.labels.connection.type")
   = f.button :submit

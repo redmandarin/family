@@ -3,7 +3,7 @@ require_relative '../feature_helper'
 feature 'delete connection' do
   given!(:member) { create(:member) }
   given!(:another_member) { create(:member, first_name: "Захар") }
-  given!(:connection) { create(:connection, child: member, parent: another_member) }
+  given!(:connection) { create(:connection, baby: member, procreator: another_member) }
 
   scenario 'succesfully delete' do
     sign_in(create(:user))

@@ -12,6 +12,8 @@ class Member < ActiveRecord::Base
 
   has_and_belongs_to_many :articles # ! Переделать
 
+  has_ancestry
+
   validates :first_name, :last_name, :birth_date, :sex, presence: true
 
   before_save :titleize

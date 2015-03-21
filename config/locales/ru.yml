@@ -6,8 +6,8 @@ ru:
         body: "Тело статьи"
         members: "Упомининающиеся в статье"
       connection:
-        child: "Ребенок"
-        parent: "Родитель"
+        baby: "Ребенок"
+        procreator: "Родитель"
         choose: "Выберите человека"
         who: "Кто?"
         type: "Тип связи"

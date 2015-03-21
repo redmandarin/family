@@ -1,9 +1,9 @@
 module MembersHelper
-  def tree(member)
-    ar = []
-    ar << member
-
-    "<ul><a href='#{member_path(member)}'>#{member.full_name}</a>" 
-    # render("members/member")
+  def tree(members)
+    members.map do |member, sub_members|
+      content_tag(:ul) do
+        content_tag(:li, render(member) + tree(sub_members))
+      end
+    end.join.html_safe
   end
 end

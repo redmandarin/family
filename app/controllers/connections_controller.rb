@@ -7,8 +7,8 @@ class ConnectionsController < ApplicationController
   respond_to :html
 
   def index
-    @parents = @member.parents
-    @children = @member.children
+    @parents = @member.procreators
+    @children = @member.babies
     respond_with(@parents, @children) 
   end
 
@@ -17,7 +17,7 @@ class ConnectionsController < ApplicationController
   end
   
   def create
-    new_param = connection_params[:parent_id] ? { child_id: @member.id } :  { parent_id: @member.id }
+    new_param = connection_params[:procreator_id] ? { baby_id: @member.id } :  { procreator_id: @member.id }
     @connection = Connection.create(connection_params.merge(new_param))
     respond_with @connection, location: -> { member_connections_path(@member) }
   end
@@ -29,7 +29,7 @@ class ConnectionsController < ApplicationController
 
   private
   def connection_params
-    params.require(:connection).permit(:parent_id, :child_id)
+    params.require(:connection).permit(:procreator_id, :baby_id)
   end
 
   def set_member
