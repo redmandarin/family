@@ -5,8 +5,8 @@ RSpec.describe Member, type: :model do
   it { should have_many :reverse_connections }
   it { should have_many :babies }
   it { should have_many :procreators }
+  it { should have_many :articles }
   it { should belong_to :partner }
-  it { should have_and_belong_to_many :articles }
 
   it { should validate_presence_of :first_name }
   it { should validate_presence_of :last_name }
@@ -34,19 +34,6 @@ RSpec.describe Member, type: :model do
   describe 'user full name' do
     it 'should give full name' do
       expect(member.full_name).to eq("Петр Аркадьевич Гуськов")
-    end
-  end
-
-  describe '.tree' do
-    let!(:member) { create(:member) }
-    let!(:wife_member) { create(:member, partner: member) }
-    let!(:child) { create(:member) }
-    let!(:child_of_child) { create(:member) }
-    let!(:connection) { create(:connection, procreator: member, baby: child)}
-    let!(:another_connection) { create(:connection, procreator: child, baby: child_of_child)}
-
-    it 'returns hash with all children and children and ...' do
-      expect(member.siblings).to eq([1,2,3])
     end
   end
 end

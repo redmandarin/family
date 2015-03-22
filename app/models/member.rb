@@ -9,8 +9,8 @@ class Member < ActiveRecord::Base
   has_many :babies, through: :connections
   has_many :reverse_connections, class_name: 'Connection', foreign_key: 'baby_id', dependent: :destroy
   has_many :procreators, through: :reverse_connections
-
-  has_and_belongs_to_many :articles # ! Переделать
+  has_many :memberships
+  has_many :articles, through: :memberships, source: :membershipable, source_type: 'Article'
 
   has_ancestry
 

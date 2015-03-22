@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320195611) do
+ActiveRecord::Schema.define(version: 20150322062935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,11 +22,6 @@ ActiveRecord::Schema.define(version: 20150320195611) do
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "articles_members", id: false, force: :cascade do |t|
-    t.integer "member_id"
-    t.integer "article_id"
   end
 
   create_table "connections", force: :cascade do |t|
@@ -49,6 +44,12 @@ ActiveRecord::Schema.define(version: 20150320195611) do
   end
 
   add_index "members", ["ancestry"], name: "index_members_on_ancestry", using: :btree
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "membershipable_id"
+    t.integer "membershipable_type"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
