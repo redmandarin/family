@@ -4,6 +4,12 @@ RSpec.describe MembersController, type: :controller do
   let(:member) { create(:member) }
   sign_in_user
 
+  describe "GET #tree" do
+    it 'assigns @member to member' do
+      get :tree, id: member
+    end
+  end
+
   describe "GET #new" do
     it 'assigns @member' do
       get :new
