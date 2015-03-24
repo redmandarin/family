@@ -37,6 +37,10 @@ ru:
       children: "Дети"
       new_connection: "Новая связь"
     link:
+      menu:
+        members: "Члены семьи"
+        tree: "Родословная относительно пользователя"
+        big_tree: "Родословная"
       connection:
         edit: "Редактировать связи"
         new: "Добавить новую связь"

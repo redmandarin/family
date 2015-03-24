@@ -1,10 +1,8 @@
 .header
   %nav
     %ul.nav.nav-pills.pull-right
-      %li.active{:role => "presentation"}
-        %a{:href => "#"} Home
       %li{:role => "presentation"}
-        %a{:href => "#"} About
+        = link_to t("helpers.link.menu.members"), members_path
       %li{:role => "presentation"}
-        %a{:href => "#"} Contact
+        = link_to t("helpers.link.menu.big_tree"), big_tree_members_path
   %h3.text-muted= t("project_name")

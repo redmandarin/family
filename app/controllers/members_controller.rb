@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: [:edit, :update, :destroy]
+  before_action :set_member, only: [:edit, :update, :destroy, :tree]
   before_action :authenticate_user!, except: [:index, :show]
 
   authorize_resource
@@ -30,6 +30,14 @@ class MembersController < ApplicationController
 
   def destroy
     respond_with(@member.destroy)
+  end
+
+  def tree
+  end
+
+  def big_tree
+    @member = Member.order("birth_date ASC").first
+    render "tree"
   end
 
 private

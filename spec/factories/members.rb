@@ -18,4 +18,16 @@ FactoryGirl.define do
     association :partner, factory: :woman_member
   end
 
+  factory :member_with_baby do
+    first_name "Mystring"
+    last_name "Mystring"
+    middle_name "Mystring"
+    birth_date "2015-02-26"
+    death_date "2015-02-26"
+    sex "male"
+    association :partner, factory: :woman_member
+    
+    after_create { |member| member.babies << create(:member) }
+  end
+
 end

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :articles
   resources :members do
     get 'tree', on: :member
+    get 'big_tree', on: :collection
     resources :connections, only: [:index, :create, :destroy, :new]
   end
  

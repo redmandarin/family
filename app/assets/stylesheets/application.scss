@@ -15,4 +15,12 @@
 @import "variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "bootstrap_form"
+@import "bootstrap_form";
+
+.first-partner {
+  border-bottom: none;
+}
+
+.second-partner {
+  border-top: none;
+}
