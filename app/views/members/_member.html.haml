@@ -1,6 +1,7 @@
-- if member.partner
-  = link_to member.full_name, member, html: { class: "first-partner" }
-  %br
-  = link_to member.partner.full_name, member.partner, html: { class: "second-partner" }
-- else
-  = link_to member.full_name, member
+%div
+  - if member.partner
+    = link_to member.full_name, member, class: "first-partner"
+    %br
+    = link_to member.partner.full_name, member.partner, class: "second-partner"
+  - else
+    = link_to member.full_name, member

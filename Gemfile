@@ -33,6 +33,7 @@ gem 'haml'
 gem 'redcarpet'
 gem 'bootstrap-sass'
 gem 'simple_form'
+gem 'devise-bootstrap-views'
 
 group :test do
   gem 'shoulda-matchers'

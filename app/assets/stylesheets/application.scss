@@ -10,17 +10,16 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require devise_bootstrap_views
  */
+
 
 @import "variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap_form";
+@import "members";
 
-.first-partner {
-  border-bottom: none;
-}
+.header { margin-bottom: 2em; }
 
-.second-partner {
-  border-top: none;
-}
+img { width: 100%; }

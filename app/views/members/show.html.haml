@@ -1,21 +1,27 @@
 .row
   .col-md-4
-    = image_tag @member.image.url, class: "member-image"
+    = image_tag @member.image.url, class: "img-circle"
     = link_to t("helpers.link.connection.edit"), member_connections_path(@member) if can?(:create, Connection)
+    = link_to t("helpers.link.member.edit"), edit_member_path(@member) if can?(:update, Member)
   .col-md-8
     %ul.list-unstyled
-      %li= link_to @member.full_name, @member
-      %li= @member.birth_date.strftime("#{t('simple_form.labels.member.birth_date')}: %d.%m.%Y")
+      %li
+        %h4= @member.full_name
+      %li
+        %strong= @member.birth_date.strftime("#{t('simple_form.labels.member.birth_date')}: %d.%m.%Y")
       - if @member.death_date
         %li= @member.death_date.strftime("#{t('simple_form.labels.member.birth_date')}: %d.%m.%Y")
       - if @member.partner
         %li
         = "#{t('simple_form.labels.member.partner_id')}:"
         = link_to @member.partner.full_name, @member.partner
+      %li
+        %p= simple_format @member.bio
 
-.row
-  .col-md-12
-    %h4 t("helpers.header.member_articles")
-    %ul
-      - @member.articles.each do |article|
-        %li= link_to article.title, article
+- if @member.articles.any?
+  .row
+    .col-md-12
+      %h4= t("helpers.header.member.articles")
+      %ul
+        - @member.articles.each do |article|
+          %li= link_to article.title, article

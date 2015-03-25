@@ -7,6 +7,8 @@
   margin: 0;
   padding: 0;
 }
+
+
 .tree ul {
   font-size: 0;
   white-space: nowrap;
@@ -83,7 +85,7 @@ right connector from last child*/
   width: 0;
   height: 20px;
 }
-.tree li a {
+.tree li div {
   border: 1px solid #ccc;
   padding: 5px 10px;
   text-decoration: none;
@@ -101,3 +103,13 @@ right connector from last child*/
   margin-right: -192px;
   margin-right: -12rem;
 }
+
+
+  .first-partner {
+    border-bottom: none !important;
+  }
+
+  .second-partner {
+    border-top: none;
+  }
+

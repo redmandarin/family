@@ -12,6 +12,7 @@ feature "Create member", type: :feature do
     fill_in("Имя", with: 'Иван')
     fill_in("Отчество", with: 'Павлович')
     fill_in("Фамилия", with: 'Гуськов')
+    fill_in("Биография", with: 'Слова слова биография')
     select '1812', from: 'member_birth_date_1i'
     select '1', from: 'member_birth_date_2i'
     select '20', from: 'member_birth_date_3i'
@@ -30,6 +31,7 @@ feature "Create member", type: :feature do
     expect(page).to have_css("img[src*='1.jpg']")
     # expect(page).to have_content("Дата смерти: 20.01.1872")
     expect(page).to have_content("Супруг/супруга: Юлия Mystring Гуськова")
+    expect(page).to have_content("Слова слова биография")
   end
 
 end

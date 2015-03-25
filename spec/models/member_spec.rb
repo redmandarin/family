@@ -13,7 +13,22 @@ RSpec.describe Member, type: :model do
   it { should validate_presence_of :birth_date }
   it { should validate_presence_of :sex }
 
-  let!(:member) { create(:member, first_name: 'Петр', last_name: "Гуськов", middle_name: "аркадьевич") }
+
+  describe 'update partner after save' do
+    let!(:another_member) { create(:member, sex: "female") }
+    subject { build(:member, partner: another_member) }
+
+    it 'call update_partner' do
+      expect(subject).to receive(:update_partner)
+      subject.save!
+    end
+
+    it 'update partner column' do
+      subject.save!
+      another_member.reload
+      expect(another_member.partner).to eq(subject)
+    end
+  end
 
   describe 'titleize name after create' do
     subject { build(:member, last_name: "гуськов", first_name: "петька", middle_name: "аркадьевич")}
@@ -32,6 +47,8 @@ RSpec.describe Member, type: :model do
   end
 
   describe 'user full name' do
+    let!(:member) { create(:member, first_name: 'Петр', last_name: "Гуськов", middle_name: "аркадьевич") }
+
     it 'should give full name' do
       expect(member.full_name).to eq("Петр Аркадьевич Гуськов")
     end

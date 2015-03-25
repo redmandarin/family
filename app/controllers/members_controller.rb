@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   before_action :set_member, only: [:edit, :update, :destroy, :tree]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :big_tree]
 
   authorize_resource
 
@@ -42,7 +42,7 @@ class MembersController < ApplicationController
 
 private
   def member_params
-    params.require(:member).permit(:first_name, :last_name, :middle_name, :sex, :birth_date, :death_date, :partner_id, :image)
+    params.require(:member).permit(:first_name, :last_name, :middle_name, :bio, :sex, :birth_date, :death_date, :partner_id, :image)
   end
 
   def set_member

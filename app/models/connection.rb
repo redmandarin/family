@@ -7,6 +7,7 @@ class Connection < ActiveRecord::Base
   validates :procreator_id, :baby_id, presence: true
 
   after_save :set_parent_ancestry
+  before_destroy :erase_ancestry
 
   def self.all_connections(member)
     Connection.where(["procreator_id = ? or baby_id = ?", member.id, member.id])
@@ -16,5 +17,9 @@ class Connection < ActiveRecord::Base
 
   def set_parent_ancestry
     self.baby.update_attributes(parent_id: self.procreator_id)  
+  end
+
+  def erase_ancestry
+    self.baby.update_attributes(parent_id: nil)
   end
 end

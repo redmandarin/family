@@ -52,6 +52,11 @@ RSpec.describe MembersController, type: :controller do
       expect(response).to redirect_to(member_path(assigns(:member)))
     end
 
+    it 'have bio after create' do
+      post :create, member: attributes_for(:member)
+      expect(assigns(:member).bio).to eq("Some long text")
+    end
+
     context 'invalid attributes' do
       it 'does not creates member' do
         expect { post :create, member: { first_name: 'some', second_name: '' } }.not_to change(Member, :count)

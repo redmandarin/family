@@ -20,6 +20,7 @@ ru:
         death_date: "Дата смерти"
         partner_id: "Супруг/супруга"
         sex: "Пол"
+        bio: "Биография"
         choose_sex: "Выберите пол"
   project_name: "Семья"
   male: "мужчина"
@@ -32,7 +33,8 @@ ru:
   helpers:
     are_you_sure: "Вы уверенны?"
     header:
-      member_articles: "Связанные статьи"
+      member:
+        articles: "Связанные статьи"
       parents: "Родители"
       children: "Дети"
       new_connection: "Новая связь"
@@ -48,6 +50,9 @@ ru:
       article:
         destroy: "Удалить статью"
         edit: "Редактировать статью"
+      member:
+        new: "Добавить человека"
+        edit: "Редактировать человека"
     submit:
       article:
         create: "Сохранить статью"

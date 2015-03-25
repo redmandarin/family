@@ -17,6 +17,7 @@ class Member < ActiveRecord::Base
   validates :first_name, :last_name, :birth_date, :sex, presence: true
 
   before_save :titleize
+  after_save :update_partner
 
   def full_name
     full_name = self.first_name + " " + self.middle_name + " " + self.last_name
@@ -28,6 +29,12 @@ class Member < ActiveRecord::Base
       # self.send(name).mb_chars[0].upcase
       new_name = self.send(name).mb_chars.capitalize
       self.send("#{name}=", new_name)
+    end
+  end
+
+  def update_partner
+    if self.partner
+      self.partner.update_columns(partner_id: self.id)
     end
   end
 end

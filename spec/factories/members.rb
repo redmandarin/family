@@ -15,6 +15,7 @@ FactoryGirl.define do
     birth_date "2015-02-26"
     death_date "2015-02-26"
     sex "male"
+    bio "Some long text"
     association :partner, factory: :woman_member
   end
 

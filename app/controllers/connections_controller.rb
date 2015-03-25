@@ -13,12 +13,12 @@ class ConnectionsController < ApplicationController
   end
 
   def new
-    respond_with(@connection = @member.connections.build)
+    respond_with(@connection = Connection.new)
   end
   
   def create
-    new_param = connection_params[:procreator_id] ? { baby_id: @member.id } :  { procreator_id: @member.id }
-    @connection = Connection.create(connection_params.merge(new_param))
+    new_params = connection_params[:baby_id] ? { procreator_id: @member.id } : { baby_id: @member.id }
+    @connection = Connection.create(connection_params.merge(new_params))
     respond_with @connection, location: -> { member_connections_path(@member) }
   end
 

@@ -1,3 +1,8 @@
+= link_to t("helpers.link.member.new"), new_member_path, class: "btn btn-default"
+
+%br
+%br
+
 %ol
   - @members.each do |member|
     %li.col-md-6= link_to member.full_name, member  
