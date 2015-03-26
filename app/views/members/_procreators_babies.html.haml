@@ -1,0 +1,14 @@
+- if @member.procreators.any?
+  %p
+    %ul.list-unstyled
+      - @member.procreators.each do |procreator|
+        %li
+          = procreator.sex == "male" ? t("helpers.label.father") : t("helpers.label.mother")
+          = link_to procreator.full_name, procreator
+- if @member.babies.any?
+  %p
+    %ul.list-unstyled
+      - @member.babies.each do |baby|
+        %li
+          = baby.sex == "male" ? t("helpers.label.son") : t("helpers.label.daughter")
+          = link_to baby.full_name, baby

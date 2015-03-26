@@ -23,3 +23,8 @@
 .header { margin-bottom: 2em; }
 
 img { width: 100%; }
+
+html.turbolinks-progress-bar::before {
+  background-color: $brand-primary !important;
+  height: 3px !important;
+}

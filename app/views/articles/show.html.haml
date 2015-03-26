@@ -1,11 +1,13 @@
-%h3= @article.title
-%p= markdown(@article.body)
+%h4= @article.title
+%p
+  = markdown(@article.body)
 
-%row
-  %p.text-right.text-muted
-    = link_to t("helpers.link.article.edit"), edit_article_path(@article)
-    = link_to t("helpers.link.article.destroy"), article_path(@article), method: 'delete', confirm: t("helpers.are_you_sure")
-%ul
+%h5.text-muted= t("simple_form.labels.article.members")
+%ul.list-unstyled
   - @article.members.each do |member|
     %li= link_to member.full_name, member
   
+%row
+  %p.text-right.text-muted
+    = link_to t("helpers.link.article.edit"), edit_article_path(@article), class: "btn btn-default btn-sm"
+    = link_to t("helpers.link.article.destroy"), article_path(@article), method: 'delete', confirm: t("helpers.are_you_sure"), class: "btn btn-default btn-sm"

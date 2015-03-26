@@ -5,6 +5,10 @@ class ArticlesController < ApplicationController
   authorize_resource
   respond_to :html
 
+  def index
+    @articles = Article.all
+  end
+
   def new
     respond_with(@article = Article.new)
   end

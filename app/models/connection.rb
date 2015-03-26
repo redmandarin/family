@@ -16,10 +16,10 @@ class Connection < ActiveRecord::Base
   private
 
   def set_parent_ancestry
-    self.baby.update_attributes(parent_id: self.procreator_id)  
+    self.baby.update_attributes(parent_id: self.procreator_id) if self.procreator.sex == "male"
   end
 
   def erase_ancestry
-    self.baby.update_attributes(parent_id: nil)
+    self.baby.update_attributes(parent_id: nil) if self.procreator.sex == "male"
   end
 end

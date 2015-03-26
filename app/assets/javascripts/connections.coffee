@@ -6,11 +6,9 @@ ready = ->
   $(".connection-type").change ->
     connection_field = $(".member-connection")
     if $(this).val() == "baby"
-      alert "hello"
       connection_field.attr("id", "connection_baby_id")
       connection_field.attr("name", "connection[baby_id]")
     else
-      alert "goodbay"
       connection_field.attr("id", "connection_procreator_id")
       connection_field.attr("name", "connection[procreator_id]")
 

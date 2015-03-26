@@ -1,6 +1,8 @@
 .row
   .col-md-4
     = image_tag @member.image.url, class: "img-circle"
+    %br
+    %br
     = link_to t("helpers.link.connection.edit"), member_connections_path(@member) if can?(:create, Connection)
     = link_to t("helpers.link.member.edit"), edit_member_path(@member) if can?(:update, Member)
   .col-md-8
@@ -10,18 +12,19 @@
       %li
         %strong= @member.birth_date.strftime("#{t('simple_form.labels.member.birth_date')}: %d.%m.%Y")
       - if @member.death_date
-        %li= @member.death_date.strftime("#{t('simple_form.labels.member.birth_date')}: %d.%m.%Y")
+        %li= @member.death_date.strftime("#{t('simple_form.labels.member.death_date')}: %d.%m.%Y")
       - if @member.partner
         %li
         = "#{t('simple_form.labels.member.partner_id')}:"
         = link_to @member.partner.full_name, @member.partner
+      = render 'procreators_babies'
       %li
         %p= simple_format @member.bio
 
 - if @member.articles.any?
   .row
     .col-md-12
-      %h4= t("helpers.header.member.articles")
-      %ul
+      %h4.text-muted= t("helpers.header.member.articles")
+      %ul.list-unstyled
         - @member.articles.each do |article|
           %li= link_to article.title, article

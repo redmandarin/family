@@ -5,7 +5,18 @@ RSpec.describe ArticlesController, type: :controller do
 
   let(:article) { create(:article) }
 
-  describe 'GET #index'
+  describe 'GET #index' do
+    before { get :index }
+    let(:articles) { create_list(:article, 3)}
+
+    it 'assigns all articles to @articles' do
+      expect(assigns(:articles)).to match_array(articles)
+    end
+
+    it 'render index template' do
+      expect(response).to render_template(:index)
+    end
+  end
 
   describe 'GET #show' do
     before { get :show, id: article}

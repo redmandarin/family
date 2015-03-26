@@ -21,8 +21,31 @@ RSpec.describe Connection, type: :model do
     end
   end
 
+  describe 'set_parent_ancestry' do
+    # let(:another_member) { create(:member, sex: "female") }
+    subject { build(:connection, procreator: member, baby: another_member)}
+    
+    it 'call after_save' do
+      expect(subject).to receive(:set_parent_ancestry)
+      subject.save!
+    end
+
+    it 'does not update ancestry if procreator is female' do
+      subject.procreator.update(sex: "female")
+      subject.save!
+      expect(another_member.ancestry).to eq(nil)
+    end
+
+    it 'update ancestry if procreator is male' do
+      subject.save!
+      expect(another_member.ancestry).not_to eq(nil)
+    end
+  end
+
   describe 'erase ancestry after destroy connection' do
     subject { build(:connection, procreator: member, baby: another_member) }
+    let(:another_member) { create(:member, first_name: 'Аркадий1', last_name: "Гуськов", middle_name: "аркадьевич", ancestry: "123") }
+    let(:connection) { create(:connection, procreator: member, baby: another_member) }
     
     it 'call destroy ancestry' do
       subject.save!
@@ -30,14 +53,19 @@ RSpec.describe Connection, type: :model do
       subject.destroy!
     end
 
-    let(:another_member) { create(:member, first_name: 'Аркадий1', last_name: "Гуськов", middle_name: "аркадьевич", ancestry: "123") }
-    let(:connection) { create(:connection, procreator: member, baby: another_member) }
 
     it 'erase ancestry' do
       connection
       connection.baby.update(parent_id: another_member.id)
       connection.destroy
       expect(connection.baby.ancestry).to eq(nil)
+    end
+
+    it 'does not erase if procreator is female' do
+      member.update(sex: "female")
+      connection.baby.update(parent_id: another_member.id)
+      connection.destroy!
+      expect(connection.baby.ancestry).not_to eq(nil)
     end
   end
 end

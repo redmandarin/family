@@ -31,23 +31,33 @@ ru:
       - :month
       - :year
   helpers:
+    label:
+      father: "Отец:"
+      mother: "Мать:"
+      son: "Сын:"
+      daughter: "Дочь:"
     are_you_sure: "Вы уверенны?"
     header:
+      article:
+        members: ":"
       member:
         articles: "Связанные статьи"
       parents: "Родители"
       children: "Дети"
       new_connection: "Новая связь"
     link:
+      back: "Назад"
       menu:
         members: "Члены семьи"
         tree: "Родословная относительно пользователя"
         big_tree: "Родословная"
+        articles: "Статьи"
       connection:
         edit: "Редактировать связи"
         new: "Добавить новую связь"
         destroy: "Удалить связь"
       article:
+        new: "Добавить статью"
         destroy: "Удалить статью"
         edit: "Редактировать статью"
       member:

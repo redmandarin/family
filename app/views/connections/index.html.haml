@@ -1,16 +1,23 @@
-= link_to t("helpers.link.connection.new"), new_member_connection_path
+.row
+  .col-md-6
+    = link_to t("helpers.link.back"), @member, class: "btn btn-default btn-sm"
+  .col-md-6.text-right
+    = link_to t("helpers.link.connection.new"), new_member_connection_path, class: "btn btn-default btn-sm text-right"
 %div.row
-  %div.col-md-6
+  %div.col-md-12
     %h4= t("helpers.header.parents")
-    %ul.parents
+    %ul.parents.list-unstyled
       - @parents.each do |parent|
         %li
           = link_to parent.full_name, parent
+          |
           = link_to t("helpers.link.connection.destroy"), member_connection_path(@member, Connection.where(procreator_id: parent.id, baby_id: @member.id).first), confirm: t("helpers.are_you_sure"), method: "delete"
-  %div.col-md-6
+%div.row
+  %div.col-md-12
     %h4= t("helpers.header.children")
-    %ul.children
+    %ul.children.list-unstyled
       - @children.each do |child|
         %li
           = link_to child.full_name, child
+          |
           = link_to t("helpers.link.connection.destroy"), member_connection_path(@member, Connection.where(procreator_id: @member.id, baby_id: child.id).first), confirm: t("helpers.are_you_sure"), method: "delete"
