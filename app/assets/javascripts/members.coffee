@@ -4,3 +4,10 @@
 
 jQuery ->
   Turbolinks.ProgressBar.enable();
+
+ready = ->
+  $('body').on 'click', '.avatar', ->
+    $('#member-image-modal').modal()
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

@@ -31,6 +31,8 @@ ru:
       - :month
       - :year
   helpers:
+    footer:
+      email_to: "По всем вопросом и предложениям пишите на"
     label:
       father: "Отец:"
       mother: "Мать:"
@@ -63,6 +65,7 @@ ru:
       member:
         new: "Добавить человека"
         edit: "Редактировать человека"
+        destroy: "Удалить страницу человека"
     submit:
       article:
         create: "Сохранить статью"

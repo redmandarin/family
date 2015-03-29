@@ -1,0 +1,9 @@
+#member-image-modal.modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title= @member.full_name
+      .modal-body
+        = image_tag @member.image.big.url

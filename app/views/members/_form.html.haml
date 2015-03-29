@@ -7,5 +7,5 @@
   = f.input :death_date, as: :date, use_two_digit_numbers: true, use_month_numbers: true, start_year: 1700, include_blank: true
   = f.input :bio
   = f.input :image, as: :file
-  = f.input :partner_id, as: :select, collection: Member.all.collect { |p| ["#{p.first_name} #{p.last_name}", p.id] }, include_blank: true
+  = f.input :partner_id, as: :select, collection: Member.order("birth_date asc").collect { |p| [p.full_name_with_year, p.id] }, include_blank: true
   = f.button :submit, input_html: { class: "btn btn-default btn-block" }

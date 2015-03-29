@@ -1,10 +1,12 @@
 .row
   .col-md-4
-    = image_tag @member.image.url, class: "img-circle"
+    = image_tag @member.image.ava.url, class: "img-circle avatar", "data-toogle": "modal", "data-target": "#member-image-modal"
+    = render 'member_image_modal'
     %br
     %br
     = link_to t("helpers.link.connection.edit"), member_connections_path(@member) if can?(:create, Connection)
     = link_to t("helpers.link.member.edit"), edit_member_path(@member) if can?(:update, Member)
+    = link_to t("helpers.link.member.destroy"), member_path(@member), method: "delete", :data => {:confirm => t("helpers.are_you_sure")} if can?(:update, Member)
   .col-md-8
     %ul.list-unstyled
       %li

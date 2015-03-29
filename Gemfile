@@ -25,9 +25,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'responders'
 gem 'carrierwave'
+# gem 'carrierwave-yandexfotki', git: "https://github.com/redmandarin/carrierwave-yandexfotki"
+# gem 'multipart-post'
+gem 'mini_magick'
 gem 'devise'
 gem 'cancancan'
 gem 'ancestry'
+gem 'russian'
 
 gem 'haml'
 gem 'redcarpet'

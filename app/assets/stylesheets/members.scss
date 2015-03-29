@@ -2,7 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.avatar {
+  cursor: pointer;
+}
 
+// tree
 * {
   margin: 0;
   padding: 0;
@@ -105,11 +109,11 @@ right connector from last child*/
 }
 
 
-  .first-partner {
-    border-bottom: none !important;
-  }
+.first-partner {
+  border-bottom: none !important;
+}
 
-  .second-partner {
-    border-top: none;
-  }
+.second-partner {
+  border-top: none;
+}
 

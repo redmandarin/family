@@ -24,6 +24,14 @@ class Member < ActiveRecord::Base
     full_name.mb_chars.split(" ").map(&:capitalize).join(" ")
   end
 
+  def full_name_with_year
+    self.full_name + " (" + self.birth_year + ")"
+  end
+
+  def birth_year
+    self.birth_date.year.to_s
+  end
+
   def titleize
     [:first_name, :middle_name, :last_name].each do |name|
       # self.send(name).mb_chars[0].upcase

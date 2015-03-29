@@ -11,7 +11,7 @@
         %li
           = link_to parent.full_name, parent
           |
-          = link_to t("helpers.link.connection.destroy"), member_connection_path(@member, Connection.where(procreator_id: parent.id, baby_id: @member.id).first), confirm: t("helpers.are_you_sure"), method: "delete"
+          = link_to t("helpers.link.connection.destroy"), member_connection_path(@member, Connection.where(procreator_id: parent.id, baby_id: @member.id).first), data: { confirm: t("helpers.are_you_sure") }, method: "delete"
 %div.row
   %div.col-md-12
     %h4= t("helpers.header.children")
@@ -20,4 +20,4 @@
         %li
           = link_to child.full_name, child
           |
-          = link_to t("helpers.link.connection.destroy"), member_connection_path(@member, Connection.where(procreator_id: @member.id, baby_id: child.id).first), confirm: t("helpers.are_you_sure"), method: "delete"
+          = link_to t("helpers.link.connection.destroy"), member_connection_path(@member, Connection.where(procreator_id: @member.id, baby_id: child.id).first), data: { confirm: t("helpers.are_you_sure") }, method: "delete"

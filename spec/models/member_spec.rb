@@ -53,4 +53,12 @@ RSpec.describe Member, type: :model do
       expect(member.full_name).to eq("Петр Аркадьевич Гуськов")
     end
   end
+
+  describe '#full_name_with_year' do
+    let!(:member) { create(:member, first_name: 'Петр', last_name: "Гуськов", middle_name: "аркадьевич", birth_date: Date.new(2020, 2, 3)) }
+
+    it 'give full_name with year' do
+      expect(member.full_name_with_year).to eq("Петр Аркадьевич Гуськов (2020)")
+    end
+  end
 end
