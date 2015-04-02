@@ -3,16 +3,13 @@
     .container-fluid
       / Brand and toggle get grouped for better mobile display
       .navbar-header
-        = link_to t("project_name"), members_path, class: "navbar-brand"
-        %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-          %span.sr-only Toggle navigation
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
+        - if user_signed_in?
+          = link_to t("project_name"), big_tree_member_path(current_user), class: "navbar-brand"
+        - else
+          %p.navbar-text= t("project_name")
       / Collect the nav links, forms, and other content for toggling
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
         %ul.nav.navbar-nav
-          %li= link_to t("helpers.link.menu.big_tree"), big_tree_members_path
           %li= link_to t("helpers.link.menu.articles"), articles_path
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?

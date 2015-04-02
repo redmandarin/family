@@ -1,12 +1,13 @@
 %h4= @article.title
 %p
   = markdown(@article.body)
-
-%h5.text-muted= t("simple_form.labels.article.members")
-%ul.list-unstyled
-  - @article.members.each do |member|
-    %li= link_to member.full_name, member
   
+- if @article.members.any?
+  %h5.text-muted= t("simple_form.labels.article.members")
+  %ul.list-unstyled
+    - @article.members.each do |member|
+      %li= link_to member.full_name, member
+    
 %row
   %p.text-right.text-muted
     = link_to t("helpers.link.article.edit"), edit_article_path(@article), class: "btn btn-default btn-sm"

@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   before_action :set_member, only: [:edit, :update, :destroy, :tree]
-  before_action :authenticate_user!, except: [:index, :show, :big_tree]
+  # before_action :authenticate_user!, except: [:index, :show, :big_tree]
 
   authorize_resource
 
@@ -36,7 +36,7 @@ class MembersController < ApplicationController
   end
 
   def big_tree
-    @member = Member.order("birth_date ASC").first
+    @member = Member.find(params[:id]).root
     render "tree"
   end
 

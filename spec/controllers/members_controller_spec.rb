@@ -5,19 +5,20 @@ RSpec.describe MembersController, type: :controller do
   sign_in_user
 
   describe "GET #big_tree" do
+    let!(:another_member) { create(:member, birth_date: Time.now) }
     before do 
       member
       allow(Time).to receive(:now).and_return(Time.now - 100.years)
     end
-    let!(:another_member) { create(:member, birth_date: Time.now) }
 
     it 'assigns @member to oldest(birth_date) member' do
-      get :big_tree
+      member.update(parent_id: another_member.id)
+      get :big_tree, id: member
       expect(assigns(:member)).to eq(another_member)
     end
 
     it 'render tree template' do
-      get :big_tree
+      get :big_tree, id: member
       expect(response).to render_template(:tree)
     end
   end

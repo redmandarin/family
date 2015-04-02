@@ -23,6 +23,6 @@ feature 'index page' do
     members
     visit tree_member_path(member)
 
-    save_and_open_page
+    # save_and_open_page
   end
 end
