@@ -1,9 +1,27 @@
-.header
-  %nav
-    %ul.nav.nav-pills.pull-right
-      %li{:role => "presentation"}
-        = link_to t("helpers.link.menu.members"), members_path
-      %li{:role => "presentation"}
-        = link_to t("helpers.link.menu.big_tree"), big_tree_members_path
-      %li= link_to t("helpers.link.menu.articles"), articles_path
-  %h3.text-muted= t("project_name")
+.row.header
+  %nav.navbar.navbar-default
+    .container-fluid
+      / Brand and toggle get grouped for better mobile display
+      .navbar-header
+        = link_to t("project_name"), members_path, class: "navbar-brand"
+        %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+      / Collect the nav links, forms, and other content for toggling
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          %li= link_to t("helpers.link.menu.big_tree"), big_tree_members_path
+          %li= link_to t("helpers.link.menu.articles"), articles_path
+        %ul.nav.navbar-nav.navbar-right
+          - if user_signed_in?
+            %p.navbar-text
+              = current_user.email
+              = link_to t("devise.sessions.new.sign_out"), destroy_user_session_path, method: "delete"
+          - else
+            %li
+              = link_to t("devise.sessions.new.sign_in"), new_user_session_path 
+
+      / /.navbar-collapse
+    / /.container-fluid

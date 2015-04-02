@@ -53,6 +53,7 @@ ru:
     sessions:
       new:
         sign_in: "Войти"
+        sign_out: "Выйти"
     shared:
       links:
         back: 

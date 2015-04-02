@@ -13,6 +13,11 @@
  *= require devise_bootstrap_views
  */
 
+// rewrite bootstrap variables
+
+  $navbar-default-bg: #ffffff;
+  $navbar-default-border: none;
+//
 
 @import "variables";
 @import "bootstrap-sprockets";
@@ -20,7 +25,8 @@
 @import "bootstrap_form";
 @import "members";
 
-.header { margin-bottom: 2em; }
+
+// .header { margin-bottom: 2em; }
 
 img { width: 100%; }
 
