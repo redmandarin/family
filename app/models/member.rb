@@ -1,4 +1,6 @@
 class Member < ActiveRecord::Base
+  include Petrovich::Extension
+
   mount_uploader :image, ImageUploader
 
   enum sex: [:male, :female]
@@ -18,6 +20,16 @@ class Member < ActiveRecord::Base
 
   before_save :titleize
   after_save :update_partner
+
+  petrovich firstname: :my_first_name
+
+  def my_first_name
+    self.first_name
+  end
+
+  def my_gender
+    self.sex.to_sym
+  end
 
   def full_name
     full_name = self.first_name + " " + self.middle_name + " " + self.last_name

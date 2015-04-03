@@ -13,6 +13,7 @@
         %h4= @member.full_name
       %li
         %strong= @member.birth_date.strftime("#{t('simple_form.labels.member.birth_date')}: %d.%m.%Y")
+      %li= link_to (t("helpers.link.member.big_tree") + " " + @member.my_first_name_genitive), big_tree_member_path(@member)
       - if @member.death_date
         %li= @member.death_date.strftime("#{t('simple_form.labels.member.death_date')}: %d.%m.%Y")
       - if @member.partner
