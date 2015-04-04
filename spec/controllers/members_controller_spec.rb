@@ -6,7 +6,7 @@ RSpec.describe MembersController, type: :controller do
 
   describe "GET #big_tree" do
     let!(:another_member) { create(:member, birth_date: Time.now) }
-    before do 
+    before do
       member
       allow(Time).to receive(:now).and_return(Time.now - 100.years)
     end
@@ -87,7 +87,7 @@ RSpec.describe MembersController, type: :controller do
       expect(response).to redirect_to(new_user_session_path)
     end
   end
-  
+
   describe 'PATCH #update' do
     it 'update member with valid attributes' do
       patch :update, id: member, member: attributes_for(:member, first_name: 'Newname')
@@ -146,7 +146,9 @@ RSpec.describe MembersController, type: :controller do
       expect(response).to redirect_to(new_user_session_path)
     end
 
-    it 'destroy member' do
+    it 'if clan admin' do
+      pp member
+      pp @user
       expect { delete :destroy, id: member }.to change(Member, :count).by(-1)
     end
   end

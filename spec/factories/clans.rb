@@ -1,21 +1,16 @@
 # == Schema Information
 #
-# Table name: articles
+# Table name: clans
 #
 #  id         :integer          not null, primary key
-#  user_id    :integer
-#  title      :string
-#  body       :text
+#  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  clan_id    :integer
 #
 
 FactoryGirl.define do
-  factory :article do
-    user_id 1
-title "MyString"
-body "MyText"
+  factory :clan do
+    name "MyString"
   end
 
 end

@@ -29,6 +29,7 @@ gem 'carrierwave'
 # gem 'multipart-post'
 gem 'mini_magick'
 gem 'devise'
+gem 'devise_invitable'
 gem 'cancancan'
 gem 'rolify'
 gem 'ancestry'
@@ -40,10 +41,9 @@ gem 'redcarpet'
 gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'devise-bootstrap-views'
+gem 'annotate', '~> 2.6.6'
 
-group :test do
-  gem 'shoulda-matchers'
-end
+gem 'shoulda-matchers', require: false, group: :test
 
 group :development, :test do
   gem 'rspec-rails'

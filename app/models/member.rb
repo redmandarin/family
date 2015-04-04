@@ -1,5 +1,30 @@
+# == Schema Information
+#
+# Table name: members
+#
+#  id          :integer          not null, primary key
+#  first_name  :string
+#  last_name   :string
+#  middle_name :string
+#  birth_date  :date
+#  death_date  :date
+#  sex         :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  partner_id  :integer
+#  image       :string
+#  ancestry    :string
+#  bio         :text
+#
+# Indexes
+#
+#  index_members_on_ancestry  (ancestry)
+#
+
 class Member < ActiveRecord::Base
   include Petrovich::Extension
+
+  attr_accessor :clan
 
   mount_uploader :image, ImageUploader
 
@@ -7,11 +32,12 @@ class Member < ActiveRecord::Base
 
   belongs_to :partner, class_name: "Member"
 
+  has_many :memberships
+  has_many :clans, through: :memberships, source: :membershipable, source_type: 'Clan'
   has_many :connections, foreign_key: 'procreator_id', dependent: :destroy
   has_many :babies, through: :connections
   has_many :reverse_connections, class_name: 'Connection', foreign_key: 'baby_id', dependent: :destroy
   has_many :procreators, through: :reverse_connections
-  has_many :memberships
   has_many :articles, through: :memberships, source: :membershipable, source_type: 'Article'
 
   has_ancestry
@@ -22,6 +48,8 @@ class Member < ActiveRecord::Base
   after_save :update_partner
 
   petrovich firstname: :my_first_name
+
+  resourcify
 
   def my_first_name
     self.first_name
