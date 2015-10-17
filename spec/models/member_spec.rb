@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: members
+#
+#  id          :integer          not null, primary key
+#  first_name  :string
+#  last_name   :string
+#  middle_name :string
+#  birth_date  :date
+#  death_date  :date
+#  sex         :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  partner_id  :integer
+#  image       :string
+#  ancestry    :string
+#  bio         :text
+#
+# Indexes
+#
+#  index_members_on_ancestry  (ancestry)
+#
+
 require 'rails_helper'
 
 RSpec.describe Member, type: :model do
@@ -6,6 +29,8 @@ RSpec.describe Member, type: :model do
   it { should have_many :babies }
   it { should have_many :procreators }
   it { should have_many :articles }
+  it { should have_many :clans }
+  it { should have_many :memberships }
   it { should belong_to :partner }
 
   it { should validate_presence_of :first_name }

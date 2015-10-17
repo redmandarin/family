@@ -1,6 +1,15 @@
+# == Schema Information
+#
+# Table name: connections
+#
+#  id            :integer          not null, primary key
+#  procreator_id :integer
+#  baby_id       :integer
+#
+
 class Connection < ActiveRecord::Base
-  attr_accessor :type
-  
+  attr_accessor :type, :clan
+
   belongs_to :procreator, class_name: 'Member'
   belongs_to :baby, class_name: 'Member'
 

@@ -3,6 +3,7 @@ class MembersController < ApplicationController
   # before_action :authenticate_user!, except: [:index, :show, :big_tree]
 
   authorize_resource
+  skip_authorize_resource only: [:big_tree, :tree]
 
   def index
     respond_with(@members = Member.all)
@@ -11,7 +12,7 @@ class MembersController < ApplicationController
   def new
     respond_with(@member = Member.new)
   end
-  
+
   def create
     respond_with(@member = Member.create(member_params))
   end
@@ -33,16 +34,28 @@ class MembersController < ApplicationController
   end
 
   def tree
+    authorize! :read, :tree
   end
 
   def big_tree
+    authorize! :read, :big_tree
     @member = Member.find(params[:id]).root
     render "tree"
   end
 
 private
   def member_params
-    params.require(:member).permit(:first_name, :last_name, :middle_name, :bio, :sex, :birth_date, :death_date, :partner_id, :image)
+    params.require(:member).permit(
+      :first_name,
+      :last_name,
+      :middle_name,
+      :bio,
+      :sex,
+      :birth_date,
+      :death_date,
+      :partner_id,
+      :image
+      )
   end
 
   def set_member
